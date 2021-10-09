@@ -96,7 +96,7 @@ static int uid_stat_show(struct seq_file *m, void *v)
 			read_unlock(&tasklist_lock);
 			mutex_unlock(&uid_lock);
 			pr_err("%s: failed to find the uid_entry for uid %d\n",
-						__func__, from_kuid_munged(current_user_ns(),
+				__func__, from_kuid_munged(current_user_ns(),
 				task_uid(task)));
 			return -ENOMEM;
 		}
@@ -109,7 +109,6 @@ static int uid_stat_show(struct seq_file *m, void *v)
 		uid_entry->active_utime += utime;
 		uid_entry->active_stime += stime;
 		uid_entry->active_power += task->cpu_power;
-	}
 	} while_each_thread(temp, task);
 	read_unlock(&tasklist_lock);
 
